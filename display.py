@@ -1,6 +1,7 @@
 from RPi import GPIO
 from RPLCD.gpio import CharLCD
 
+
 class Display:
 
     camera_connected = False
