@@ -67,6 +67,7 @@ class TimeLapse:
         if interval_state[1] and self.interval > 0:
             self.interval -= 1
 
+
 timel = TimeLapse(10, "Frame")
 
 while True:

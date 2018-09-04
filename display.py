@@ -3,9 +3,12 @@ from RPLCD.gpio import CharLCD
 
 class Display:
 
-    def __init__(self):
+    camera_connected = False
+
+    def __init__(self, camera_connected = False):
         self.lcd = CharLCD(pin_rs=15, pin_rw=18, pin_e=16, pins_data=[21, 22, 23, 24], numbering_mode=GPIO.BOARD)
         self._create_chars()
+        self.camera_connected = camera_connected
 
     def update_display(self, count, interval, counter=0):
         self.lcd.cursor_pos = (0, 0)
