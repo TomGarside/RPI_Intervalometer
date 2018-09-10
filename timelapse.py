@@ -27,7 +27,7 @@ class TimeLapse:
             print("Please Connect a Camera")
 
     def _take_photo(self):
-        # run in separate thread to maintain timings - try this on a multicore cpu
+        # run in separate thread to maintain timings - try this on a multi-core cpu
         image = self.camera.capture()
         with open("/home/pi/tlapse/" + self.path + str(self.count), "wb") as photo:
             photo.write(image)

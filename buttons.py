@@ -1,5 +1,6 @@
 from RPi import GPIO
 
+
 class Buttons:
     intervalUp = False
     intervalDown = False
