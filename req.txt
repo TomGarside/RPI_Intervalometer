@@ -1,0 +1,3 @@
+RPLCD
+gphoto2-cffi
+RPi.GPIO
