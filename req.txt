@@ -1,5 +1,4 @@
-python-dev
-libffi-dev
+
 RPLCD
 gphoto2-cffi
 RPi.GPIO
