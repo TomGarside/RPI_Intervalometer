@@ -1,7 +1,7 @@
 import unittest
 
 
-class test_buttons(unittest.testcase):
+class test_buttons(unittest.TestCase):
 
     def test_buttons_intitialzed_to_false():
         return True
