@@ -17,7 +17,7 @@ class TimeLapse:
         self.path = path
         self.interval = interval
         self.count = 0
-        self.buttons = buttons.Buttons(35, 40, 38)
+        self.buttons = buttons.buttons(35, 40, 38)
         self.display = display.Display()
         try:
             print(gphoto.list_cameras())
