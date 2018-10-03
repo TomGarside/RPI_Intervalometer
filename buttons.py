@@ -1,4 +1,4 @@
-from RPI import GPIO
+from RPi import GPIO
 
 
 class buttons:
