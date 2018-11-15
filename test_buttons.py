@@ -5,7 +5,7 @@ import buttons
 class test_buttons(unittest.TestCase):
 
     def test_buttons_intitialzed_to_false(self):
-        with mock.patch('buttons.RPi.GPIO') as mocked_GPIO:
+        with mock.patch('RPi.GPIO'):
             mybuttons = buttons.buttons(35, 40, 38)
             return not mybuttons.read_interval_state()[0]
 

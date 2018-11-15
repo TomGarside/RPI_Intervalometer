@@ -49,15 +49,13 @@ class TimeLapse:
             # take initial time to calculate offset for variable capture time
             init_time = time.time()
             self.display.update_display(self.interval)
-            t = threading.Thread(self._take_photo())
             try:
-                t.start()
+                self._take_photo()
             except AttributeError:
                 print("failed to take")
             # calculate the offset
             offset_time = time.time() - init_time
             self._wait_int(self.interval, offset_time)
-            t.join()
         self.count = 0
 
     def _update_interval(self):
