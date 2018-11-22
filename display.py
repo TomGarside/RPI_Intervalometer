@@ -4,24 +4,23 @@ from RPLCD.gpio import CharLCD
 
 class Display:
 
-    camera_connected = False
-
-    def __init__(self, camera_connected = False):
-        self.lcd = CharLCD(pin_rs=15, pin_rw=18, pin_e=16, pins_data=[21, 22, 23, 24], numbering_mode=GPIO.BOARD)
+    def __init__(self):
+        self.lcd = CharLCD(pin_rs=15, pin_rw=18,
+                           pin_e=16, pins_data=[21, 22, 23, 24],
+                           numbering_mode=GPIO.BOARD)
         self._create_chars()
-        self.camera_connected = camera_connected
 
-    def update_display(self, count, interval, counter=0):
+    def update_display(self, count, interval, counter=0,camera_connected=False):
         self.lcd.cursor_pos = (0, 0)
         self.lcd.write_string("Interval:")
         self.lcd.cursor_pos = (0, 9)
-        self.lcd.write_string(str(interval + " "))
+        self.lcd.write_string(str(interval) + " ")
         if not counter == 0:
             self.lcd.cursor_pos = (0, 13)
             self.lcd.write_string(str(counter) + " ")
         self.lcd.cursor_pos = (1, 0)
         self.lcd.write_string("Shots:" + str(count) + " ")
-        if self.camera_connected:
+        if camera_connected: #displays camera icon if camera connected
             self.lcd.cursor_pos = (1, 13)
             self.lcd.write_string("\x00\x01\x02")
 
