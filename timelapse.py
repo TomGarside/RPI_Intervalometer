@@ -29,7 +29,7 @@ class TimeLapse:
 
     def _take_photo(self):
         image = self.camera.capture()
-        with open("/home/pi/tlapse/" + self.path + str(self.count), "wb") as photo:
+        with open(self.path + time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime()), "wb") as photo:
             photo.write(image)
         print(self.path + str(self.count) + " saved")
 
@@ -41,8 +41,8 @@ class TimeLapse:
                                         interval = self.interval,
                                         counter = delay,
                                         camera_connected = self.camera_connected)
-            delay -= 1
-            time.sleep(1)
+            delay -= 0.1
+            time.sleep(0.1)
 
     def start_timelapse(self):
         self.display.update_display(count=self.count,
@@ -74,7 +74,7 @@ class TimeLapse:
             self.interval -= 1
 
 
-timel = TimeLapse(10, "Frame")
+timel = TimeLapse(30, "/home/pi/Timelapse_Photos/")
 
 while True:
     timel.start_timelapse()

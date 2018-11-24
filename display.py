@@ -17,7 +17,7 @@ class Display:
         self.lcd.write_string(str(interval) + " ")
         if not counter == 0:
             self.lcd.cursor_pos = (0, 13)
-            self.lcd.write_string(str(counter) + " ")
+            self.lcd.write_string(str(counter)[:3] + " ")
         self.lcd.cursor_pos = (1, 0)
         self.lcd.write_string("Shots:" + str(count) + " ")
         if camera_connected: #displays camera icon if camera connected
