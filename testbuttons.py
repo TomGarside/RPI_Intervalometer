@@ -2,7 +2,8 @@ import unittest
 from unittest import mock
 import buttons
 
-class test_buttons(unittest.TestCase):
+
+class TestButtons(unittest.TestCase):
 
     def test_buttons_intitialzed_to_false(self):
         with mock.patch('RPi.GPIO'):

@@ -10,7 +10,7 @@ class Display:
                            numbering_mode=GPIO.BOARD)
         self._create_chars()
 
-    def update_display(self, count, interval, counter=0,camera_connected=False):
+    def update_display(self, count, interval, counter=0, camera_connected=False):
         self.lcd.cursor_pos = (0, 0)
         self.lcd.write_string("Interval:")
         self.lcd.cursor_pos = (0, 9)
@@ -20,7 +20,7 @@ class Display:
             self.lcd.write_string(str(counter)[:3] + " ")
         self.lcd.cursor_pos = (1, 0)
         self.lcd.write_string("Shots:" + str(count) + " ")
-        if camera_connected: #displays camera icon if camera connected
+        if camera_connected:  # displays camera icon if camera connected
             self.lcd.cursor_pos = (1, 13)
             self.lcd.write_string("\x00\x01\x02")
 

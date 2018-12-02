@@ -29,18 +29,18 @@ class TimeLapse:
 
     def _take_photo(self):
         image = self.camera.capture()
-        with open(self.path + time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime()), "wb") as photo:
+        with open(self.path + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()), "wb") as photo:
             photo.write(image)
         print(self.path + str(self.count) + " saved")
 
     def _wait_int(self, delay, offset):
         delay = delay - offset
-        print("offset =",offset)
+        print("offset =", offset)
         while delay > 0:
-            self.display.update_display(count = self.count,
-                                        interval = self.interval,
-                                        counter = delay,
-                                        camera_connected = self.camera_connected)
+            self.display.update_display(count=self.count,
+                                        interval=self.interval,
+                                        counter=delay,
+                                        camera_connected=self.camera_connected)
             delay -= 0.1
             time.sleep(0.1)
 
@@ -63,7 +63,7 @@ class TimeLapse:
                 print("failed to take")
             # calculate the offset
             offset_time = time.time() - init_time
-            self._wait_int(delay = self.interval,offset = offset_time)
+            self._wait_int(delay=self.interval, offset=offset_time)
         self.count = 0
 
     def _update_interval(self):
