@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raspberry Pi Intervalometer</title>
+</head>
+<body>
+<h1>Raspberry Pi Intervalometer</h1>
+<h3>Timelapse</h3>
+<div style="background-color=gray">
+    <form method="post" action="/">
+        Interval:
+        <br>
+        <input type="number"
+             id="start"
+             name="Interval"
+             min="10" max="999" value={{ interval }}> seconds
+        <br><br>
+        frames: {{ count }}
+        <br><br>
+        <input type="submit" value="Start Timelapse">
+    </form>
+    <form method="post" action="/timelapseOff" >
+        <input type="submit" value="End Timelapse">
+    </form>
+</div>
+
+
+
+</body>
+</html>

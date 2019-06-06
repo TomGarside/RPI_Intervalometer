@@ -1,6 +1,4 @@
-import threading
-import buttons
-import display
+
 import time
 import gphoto2cffi as gphoto
 
@@ -17,9 +15,7 @@ class TimeLapse:
         self.path = path
         self.interval = interval
         self.count = 0
-        self.buttons = buttons.buttons(35, 40, 38)
-        self.display = display.Display()
-        self.web_start = False
+        self.timelapse_on = False
         try:
             print(gphoto.list_cameras())
             self.camera = gphoto.Camera()
@@ -27,6 +23,8 @@ class TimeLapse:
             self.camera_connected = True
         except AttributeError:
             print("Please Connect a Camera")
+        except Exception:
+            print("Unknown error")
 
     def _take_photo(self):
         image = self.camera.capture()
@@ -38,26 +36,16 @@ class TimeLapse:
         delay = delay - offset
         print("offset =", offset)
         while delay > 0:
-            self.display.update_display(count=self.count,
-                                        interval=self.interval,
-                                        counter=delay,
-                                        camera_connected=self.camera_connected)
             delay -= 0.1
             time.sleep(0.1)
 
     def start_timelapse(self):
-        self.display.update_display(count=self.count,
-                                    interval=self.interval,
-                                    camera_connected=self.camera_connected)
-        self._update_interval()
-        while self.buttons.run_time_lapse() or self.web_start:
-            print(str(self.buttons.run_time_lapse) + str(self.count))
+
+        while self.timelapse_on:
             self.count += 1
             # take initial time to calculate offset for variable capture time
             init_time = time.time()
-            self.display.update_display(count=self.count,
-                                        interval=self.interval,
-                                        camera_connected=self.camera_connected)
+
             try:
                 self._take_photo()
             except AttributeError:
@@ -67,18 +55,9 @@ class TimeLapse:
             self._wait_int(delay=self.interval, offset=offset_time)
         self.count = 0
 
-    def _update_interval(self):
-        interval_state = self.buttons.read_interval_state()
-        if interval_state[0]:
-            self.interval += 1
-        if interval_state[1] and self.interval > 9:
-            self.interval -= 1
 
 
-timel = TimeLapse(30, "/home/pi/Timelapse_Photos/")
 
-while True:
-    timel.start_timelapse()
 
 
 
